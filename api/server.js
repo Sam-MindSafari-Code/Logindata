@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log('Connected to MongoDB Atlas'))
+    .then(() => alert('MongoDB URI:', process.env.MONGODB_URI);
     .catch((err) => {
         console.error('MongoDB connection error:', err.message || err);
         process.exit(1);
