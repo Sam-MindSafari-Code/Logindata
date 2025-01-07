@@ -6,7 +6,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 
-// Middleware
+//Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
