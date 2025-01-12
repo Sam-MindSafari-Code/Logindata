@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <style>
+        /* Style stuff, css, not super important right now */
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -63,31 +64,37 @@
     </div>
 
     <script>
+        //Define an asynchronous function to handle the login process
+        //asynchronous function is a function in programming that allows the execution of other operations 
+        //while waiting for a time-consuming task (like fetching data from a server or reading a file)
         async function login() {
+            //Retrieve the username and password input values from the database
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
         
             try {
-                const response = await fetch('/login', {
+                //Send a POST request to the server with the username and password as JSON
+                //Locally so a hardcoded port is 5000
+                const response = await fetch('http://localhost:5000/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ username, password }),
                 });
-
-                const result = await response.json();
+                //Check if the response indicates a successful login
                 if (response.ok) {
-                    alert(result.message);
-                    // Save token in localStorage (or cookies for better security)
-                    localStorage.setItem('authToken', result.token);
+                    //then goes to this page
                     window.location.href = "welcome.html";
                 } else {
-                    alert(result.message || 'Invalid username or password');
+                    //alerts the website
+                    alert('Invalid username or password');
                 }
             } catch (error) {
+                //something wrong with connection or something else (should add more for better error catching)
                 console.error('Error:', error);
                 alert('An error occurred. Please try again later.');
             }
         }
+        
     </script>
 </body>
 </html>
